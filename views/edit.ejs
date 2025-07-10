@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Buku</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;400&display=swap" rel="stylesheet">
+</head>
+<body class="bg-grad">
+    <div class="form-container">
+        <a href="/" class="btn-back" title="Kembali ke daftar">
+            <svg width="28" height="28" fill="none"><path d="M18 24l-9-10 9-10" stroke="#6c63ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <h2 class="form-title">Edit Buku 📚</h2>
+        <form action="/edit/<%= book._id %>" method="POST" enctype="multipart/form-data" autocomplete="off">
+            <div class="input-group">
+                <label>Judul Buku</label>
+                <input type="text" name="title" value="<%= book.title %>" required autofocus>
+            </div>
+            <div class="input-group">
+                <label>Penulis</label>
+                <input type="text" name="author" value="<%= book.author %>" required>
+            </div>
+            <div class="input-group">
+                <label>Tahun</label>
+                <input type="number" name="year" value="<%= book.year %>" min="1800" max="2100" required>
+            </div>
+            <div class="input-group">
+                <label>Cover Buku</label>
+                <input type="file" name="cover" accept="image/*" onchange="previewCover(event)">
+                <% if (book.cover) { %>
+                    <div style="margin-top:12px;">
+                        <img id="coverPreview" src="/uploads/<%= book.cover %>" alt="Cover Buku" style="max-width:110px; border-radius:12px; box-shadow:0 4px 14px #cadcff70;">
+                    </div>
+                <% } else { %>
+                    <img id="coverPreview" style="display:none;max-width:110px;margin-top:10px;border-radius:11px;box-shadow:0 4px 14px #cadcff70;">
+                <% } %>
+            </div>
+            <button class="btn-primary" type="submit">
+                <span>Update Buku</span>
+            </button>
+        </form>
+    </div>
+    <script>
+    function previewCover(event) {
+        const [file] = event.target.files;
+        const preview = document.getElementById('coverPreview');
+        if (file) {
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = 'block';
+        }
+    }
+    </script>
+</body>
+</html>

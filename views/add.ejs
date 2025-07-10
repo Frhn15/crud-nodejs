@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tambah Buku</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;400&display=swap" rel="stylesheet">
+</head>
+<body class="bg-grad">
+    <div class="form-container">
+        <a href="/" class="btn-back" title="Kembali ke daftar">
+            <svg width="28" height="28" fill="none"><path d="M18 24l-9-10 9-10" stroke="#6c63ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <h2 class="form-title">Tambah Buku 📖</h2>
+        <form action="/add" method="POST" enctype="multipart/form-data" autocomplete="off">
+            <div class="input-group">
+                <label>Judul Buku</label>
+                <input type="text" name="title" placeholder="Judul Buku" required autofocus>
+            </div>
+            <div class="input-group">
+                <label>Penulis</label>
+                <input type="text" name="author" placeholder="Nama Penulis" required>
+            </div>
+            <div class="input-group">
+                <label>Tahun</label>
+                <input type="number" name="year" placeholder="Tahun Terbit" min="1800" max="2100" required>
+            </div>
+            <div class="input-group">
+                <label>Cover Buku</label>
+                <input type="file" name="cover" accept="image/*" onchange="previewCover(event)">
+                <img id="coverPreview" style="display:none;max-width:110px;margin-top:10px;border-radius:11px;box-shadow:0 4px 14px #cadcff70;">
+            </div>
+            <button class="btn-primary" type="submit">
+                <span>Simpan Buku</span>
+            </button>
+        </form>
+    </div>
+    <script>
+    function previewCover(event) {
+        const [file] = event.target.files;
+        const preview = document.getElementById('coverPreview');
+        if (file) {
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = 'block';
+        }
+    }
+    </script>
+</body>
+</html>
