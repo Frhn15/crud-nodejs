@@ -1,0 +1,15 @@
+[{
+  "_id": {
+    "$oid": "686fb02a667e8e4c87228b7c"
+  },
+  "title": "tentang kopi",
+  "author": "farhan",
+  "year": 2025,
+  "cover": "1752150058877.jpg",
+  "__v": 0,
+  "borrower": {
+    "name": "",
+    "nim": ""
+  },
+  "status": "Tersedia"
+}]
